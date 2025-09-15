@@ -1,11 +1,11 @@
 // This class represents a university student.
-// The attributes are public just to make it simpler to use (for learning purposes).
+// The attributes are public just to make it simpler to use .
 
 public class Student {
-    // Variables that describe a student (we’re not using 'private' here to keep it simple)
+    // Variables that describe a student 
     int age; // Student’s age
     int semester; // Current semester
-    int socioEconomicStratum; // Socioeconomic level (in Colombia it goes from 1 to 6)
+    int socioEconomicStratum; // Socioeconomic level ( from 1 to 6)
     int coursesCompleted; // Number of courses already completed
     int coursesPending; // Number of courses still pending
     String program; // Name of the academic program or major
@@ -23,7 +23,7 @@ public class Student {
     }
 
     // This method prints all the student’s information to the console.
-    // It’s similar to using 'toString()', but here we send the data directly to System.out.println.
+    // the data directly to System.out.println.
     public void printInfo() {
         System.out.println(
             "Student{Age: " + age +
