@@ -1,20 +1,17 @@
-/**
- * Clase que representa a un estudiante de la universidad.
- * Atributos públicos para simplificar el acceso (solo para fines educativos).
- */
-public class Student {
-    // Atributos simplificados (sin 'private')
-    int age; // Edad del estudiante
-    int semester; // Semestre actual
-    int socioEconomicStratum; // Estrato socioeconómico (1-6)
-    int coursesCompleted; // Materias cursadas
-    int coursesPending; // Materias pendientes
-    String program; // Nombre del programa académico
-    int programId; // Código del programa
+// This class represents a university student.
+// The attributes are public just to make it simpler to use (for learning purposes).
 
-    /**
-     * Constructor para inicializar un nuevo estudiante.
-     */
+public class Student {
+    // Variables that describe a student (we’re not using 'private' here to keep it simple)
+    int age; // Student’s age
+    int semester; // Current semester
+    int socioEconomicStratum; // Socioeconomic level (in Colombia it goes from 1 to 6)
+    int coursesCompleted; // Number of courses already completed
+    int coursesPending; // Number of courses still pending
+    String program; // Name of the academic program or major
+    int programId; // ID code of the program
+
+    // Constructor: used to create a new student with all their information
     public Student(int age, int semester, int stratum, int completed, int pending, String program, int programId) {
         this.age = age;
         this.semester = semester;
@@ -25,18 +22,16 @@ public class Student {
         this.programId = programId;
     }
 
-    /**
-     * Método que imprime directamente la información del estudiante en la consola.
-     * Reemplaza al método 'toString()'.
-     */
+    // This method prints all the student’s information to the console.
+    // It’s similar to using 'toString()', but here we send the data directly to System.out.println.
     public void printInfo() {
         System.out.println(
-            "Student{Edad: " + age +
-            ", Semestre: " + semester +
-            ", Estrato: " + socioEconomicStratum +
-            ", Cursadas: " + coursesCompleted +
-            ", Pendientes: " + coursesPending +
-            ", Programa: '" + program + '\'' +
+            "Student{Age: " + age +
+            ", Semester: " + semester +
+            ", Stratum: " + socioEconomicStratum +
+            ", Completed: " + coursesCompleted +
+            ", Pending: " + coursesPending +
+            ", Program: '" + program + '\'' +
             ", ID: " + programId + '}'
         );
     }

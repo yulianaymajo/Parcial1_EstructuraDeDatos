@@ -1,51 +1,42 @@
-/**
- * Clase utilitaria que contiene implementaciones de algoritmos de búsqueda.
- */
+// This class has search algorithms to find students inside an array.
+
 public class SearchAlgorithms {
 
-    /**
-     * Algoritmo de Búsqueda Lineal (Linear Search).
-     * Busca un estudiante en un arreglo por su programId.
-     * Recorre el arreglo elemento por elemento hasta encontrarlo o llegar al final.
-     * @param arr El arreglo de estudiantes.
-     * @param targetId El ID del programa que se busca.
-     * @return El índice del estudiante encontrado, o -1 si no se encuentra.
-     */
+    // Linear Search:
+    // This goes through the array one by one until it finds
+    // the student with the programId we’re looking for.
+    // If found, it returns the index. If not, it returns -1.
     public static int linearSearchByProgramId(Student[] arr, int targetId) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].programId == targetId) {
-                return i; // Retorna el índice si se encuentra
+                return i; // Found it, return the index
             }
         }
-        return -1; // Retorna -1 si no se encuentra
+        return -1; // If we reached the end without finding it
     }
 
-    /**
-     * Algoritmo de Búsqueda Binaria (Binary Search).
-     * Busca un estudiante en un arreglo ORDENADO por edad (age).
-     * Divide el arreglo a la mitad en cada paso para encontrar el objetivo.
-     * @param arr El arreglo de estudiantes (DEBE estar ordenado por edad).
-     * @param targetAge La edad que se busca.
-     * @return El índice del estudiante encontrado, o -1 si no se encuentra.
-     */
+    // Binary Search:
+    // This algorithm is faster, but it only works if the array is ALREADY sorted by age.
+    // Instead of checking one by one, it checks the middle element,
+    // and then decides whether to keep searching on the left or right half.
     public static int binarySearchByAge(Student[] arr, int targetAge) {
         int left = 0;
         int right = arr.length - 1;
 
         while (left <= right) {
-            int mid = left + (right - left) / 2;
+            int mid = left + (right - left) / 2; // index of the middle element
 
             if (arr[mid].age == targetAge) {
-                return mid; // Elemento encontrado
+                return mid; // Found the student
             }
 
             if (arr[mid].age < targetAge) {
-                left = mid + 1; // Busca en la mitad derecha
+                left = mid + 1; // Keep searching on the right side
             } else {
-                right = mid - 1; // Busca en la mitad izquierda
+                right = mid - 1; // Keep searching on the left side
             }
         }
 
-        return -1; // Elemento no encontrado
+        return -1; // Not found
     }
 }

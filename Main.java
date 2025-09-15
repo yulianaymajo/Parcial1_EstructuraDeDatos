@@ -1,80 +1,78 @@
-/**
- * Clase principal que ejecuta el programa.
- * Crea una lista de estudiantes, aplica ordenamientos, realiza búsquedas y muestra los resultados.
- */
+//// This is the main class that runs the whole program.
+// Here we create students, sort them, search for them, and print the results.
+
 public class Main {
 
-    /**
-     * Método para imprimir un arreglo de estudiantes en consola.
-     * Ahora llama al método 'printInfo()' de cada estudiante.
-     */
+    // This method prints a list of students to the console.
+    // It takes a title and an array of students, then shows each one using printInfo().
     public static void printStudentList(String title, Student[] students) {
         System.out.println("\n=== " + title + " ===");
         for (int i = 0; i < students.length; i++) {
             System.out.print((i + 1) + ". ");
-            students[i].printInfo(); // <-- Aquí se usa el nuevo método
+            students[i].printInfo(); // We call the method that prints the student’s info
         }
     }
 
     public static void main(String[] args) {
-        // Crear un conjunto de 10 estudiantes con datos coherentes
+        // Create 10 students with sample data
         Student[] originalStudents = {
-            new Student(20, 3, 2, 8, 6, "Ingeniería de Sistemas", 101),
-            new Student(22, 7, 3, 15, 2, "Derecho", 102),
-            new Student(19, 2, 1, 5, 9, "Psicología", 103),
-            new Student(25, 9, 4, 18, 1, "Medicina", 104),
-            new Student(21, 5, 3, 12, 4, "Administración", 105),
-            new Student(23, 6, 5, 14, 3, "Arquitectura", 106),
-            new Student(18, 1, 2, 3, 11, "Diseño Gráfico", 107),
-            new Student(24, 8, 4, 17, 2, "Contaduría", 108),
-            new Student(20, 4, 3, 10, 5, "Biología", 109),
-            new Student(26, 10, 6, 20, 0, "Ingeniería Civil", 110)
+            new Student(20, 3, 2, 8, 6, "Systems Engineering", 101),
+            new Student(22, 7, 3, 15, 2, "Law", 102),
+            new Student(19, 2, 1, 5, 9, "Psychology", 103),
+            new Student(25, 9, 4, 18, 1, "Medicine", 104),
+            new Student(21, 5, 3, 12, 4, "Business Administration", 105),
+            new Student(23, 6, 5, 14, 3, "Architecture", 106),
+            new Student(18, 1, 2, 3, 11, "Graphic Design", 107),
+            new Student(24, 8, 4, 17, 2, "Accounting", 108),
+            new Student(20, 4, 3, 10, 5, "Biology", 109),
+            new Student(26, 10, 6, 20, 0, "Civil Engineering", 110)
         };
 
-        // Mostrar la lista original
-        printStudentList("Lista Original de Estudiantes", originalStudents);
+        // Print the original list before sorting
+        printStudentList("Original List of Students", originalStudents);
 
-        // --- ORDENAMIENTO ---
+        // --- SORTING ---
 
-        // 1. Insertion Sort por Edad (Ascendente)
-        Student[] studentsForInsertion = originalStudents.clone(); // Clonar para no modificar el original
+        // 1. Use Insertion Sort to sort students by age (ascending).
+        // Clone the array so we don’t change the original.
+        Student[] studentsForInsertion = originalStudents.clone();
         SortingAlgorithms.insertionSortByAge(studentsForInsertion);
-        printStudentList("Después de Insertion Sort (por Edad, Ascendente)", studentsForInsertion);
+        printStudentList("After Insertion Sort (by Age, Ascending)", studentsForInsertion);
 
-        // 2. Selection Sort por Semestre (Descendente)
+        // 2. Use Selection Sort to sort students by semester (descending).
         Student[] studentsForSelection = originalStudents.clone();
         SortingAlgorithms.selectionSortBySemesterDesc(studentsForSelection);
-        printStudentList("Después de Selection Sort (por Semestre, Descendente)", studentsForSelection);
+        printStudentList("After Selection Sort (by Semester, Descending)", studentsForSelection);
 
-        // --- BÚSQUEDA ---
-
+        // --- SEARCHING ---
         System.out.println("\n" + "=".repeat(50));
-        System.out.println("RESULTADOS DE BÚSQUEDA");
+        System.out.println("SEARCH RESULTS");
         System.out.println("=".repeat(50));
 
-        // Búsqueda Lineal por programId
-        int targetProgramId = 105; // Buscamos al estudiante con ID 105
+        // Linear Search: look for the student with programId = 105
+        int targetProgramId = 105;
         int linearResult = SearchAlgorithms.linearSearchByProgramId(originalStudents, targetProgramId);
-        System.out.println("\nBúsqueda Lineal por ID de Programa: " + targetProgramId);
+        System.out.println("\nLinear Search by Program ID: " + targetProgramId);
         if (linearResult != -1) {
-            System.out.println("¡ENCONTRADO! en índice " + linearResult + ":");
-            originalStudents[linearResult].printInfo(); // <-- Imprime con el nuevo método
+            System.out.println("FOUND at index " + linearResult + ":");
+            originalStudents[linearResult].printInfo();
         } else {
-            System.out.println("Estudiante con ID " + targetProgramId + " NO ENCONTRADO.");
+            System.out.println("Student with Program ID " + targetProgramId + " NOT FOUND.");
         }
 
-        // Búsqueda Binaria por Edad
-        // Primero, necesitamos un arreglo ordenado por edad. Usamos el ya ordenado por Insertion Sort.
+        // Binary Search: look for a student with age = 22.
+        // For this we use the array already sorted by age with Insertion Sort.
         int targetAge = 22;
         int binaryResult = SearchAlgorithms.binarySearchByAge(studentsForInsertion, targetAge);
-        System.out.println("\nBúsqueda Binaria por Edad: " + targetAge);
+        System.out.println("\nBinary Search by Age: " + targetAge);
         if (binaryResult != -1) {
-            System.out.println("¡ENCONTRADO! en índice " + binaryResult + ":");
-            studentsForInsertion[binaryResult].printInfo(); // <-- Imprime con el nuevo método
+            System.out.println("FOUND at index " + binaryResult + ":");
+            studentsForInsertion[binaryResult].printInfo();
         } else {
-            System.out.println("Estudiante con edad " + targetAge + " NO ENCONTRADO.");
+            System.out.println("Student with age " + targetAge + " NOT FOUND.");
         }
 
-        System.out.println("\nEjecución del programa completada.");
+        // Final message when everything is done
+        System.out.println("\nProgram execution completed.");
     }
 }
